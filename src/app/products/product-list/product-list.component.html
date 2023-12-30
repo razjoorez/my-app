@@ -1,0 +1,14 @@
+<p>product-list works!</p>
+
+
+<h2>Product List</h2>
+
+<ul>
+    <li (click)="selectedProduct = 'WebCam'">WebCam</li>
+    <li (click)="selectedProduct = 'Microphone'">Microphone</li>
+    <li (click)="selectedProduct = 'Wireless Keyboard'">Wireless Keyboard</li>
+</ul>
+
+<app-product-detail [name]="selectedProduct" #product (bought)="onBuy($event)"></app-product-detail>
+{{product.name}}
+<!-- {{selectedProduct}} -->
