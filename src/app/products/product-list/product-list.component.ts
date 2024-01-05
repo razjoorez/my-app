@@ -12,7 +12,9 @@ ngAfterViewInit(): void {
     console.log('after view product detail name', this.productDetail.name)
   }
 }
-selectedProduct = 'Microphone';
+selectedProduct = '';
+products = ['Webcam', 'Microphone', 'Wireless Keyboard'];
+
 
 // onBuy() {
 //   window.alert(`Just bought ${this.selectedProduct}`)
@@ -25,4 +27,9 @@ selectedProduct = 'Microphone';
 onBuy(name: string) {
   window.alert(`You just bought ${name}`);
 }
+
+trackByProducts(index: number, name: string):string {
+  return name ;
+}
+
 }

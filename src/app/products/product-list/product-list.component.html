@@ -9,6 +9,33 @@
     <li (click)="selectedProduct = 'Wireless Keyboard'">Wireless Keyboard</li>
 </ul>
 
-<app-product-detail [name]="selectedProduct" #product (bought)="onBuy($event)"></app-product-detail>
-{{product.name}}
+<ul>
+    <li *ngFor="let product of products" (click)="selectedProduct = product">
+        {{product}}
+    </li>
+</ul>
+
+
+<ul>
+    <li *ngFor="let product of products; let i=index">
+    {{i+1}} . {{product}}
+    </li>
+</ul>
+
+<ul>
+    <li *ngFor="let product of products; trackBy: trackByProducts">
+     {{product}}
+    </li>
+</ul>
+<app-product-detail 
+*ngIf="selectedProduct; else noProduct"
+[name]="selectedProduct" 
+#product 
+(bought)="onBuy($event)">
+</app-product-detail>
+<p *ngIf="!selectedProduct">No product selected!</p>
+<ng-template #noProduct>
+    <p>No product selected</p>
+</ng-template>
+<!-- {{product.name}} -->
 <!-- {{selectedProduct}} -->
