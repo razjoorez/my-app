@@ -3,38 +3,50 @@
 
 <h2>Product List</h2>
 
-<ul>
+<!-- <ul>
     <li (click)="selectedProduct = 'WebCam'">WebCam</li>
     <li (click)="selectedProduct = 'Microphone'">Microphone</li>
     <li (click)="selectedProduct = 'Wireless Keyboard'">Wireless Keyboard</li>
-</ul>
+</ul> -->
 
 <ul>
-    <li *ngFor="let product of products" (click)="selectedProduct = product">
-        {{product}}
+    <li *ngFor="let product of products | slice: 0:2" (click)="selectedProduct = product">
+        {{product.name | uppercase}}
+        {{product.name | lowercase}}
+        {{product.price | currency: 'GBP'}}
+        {{product | json
+        }}
+
     </li>
 </ul>
-
+<p>{{today | date: 'fullDate' }}</p>
 
 <ul>
     <li *ngFor="let product of products; let i=index">
-    {{i+1}} . {{product}}
+    {{i+1}} . {{product.name}}
     </li>
 </ul>
 
 <ul>
+    <li *ngFor="let product of products | keyvalue">
+       product key : {{product.key}}
+    </li>
+</ul>
+
+<!-- <ul>
     <li *ngFor="let product of products; trackBy: trackByProducts">
      {{product}}
     </li>
-</ul>
-<app-product-detail 
+</ul> -->
+<app-product-detail
 *ngIf="selectedProduct; else noProduct"
-[name]="selectedProduct" 
-#product 
+[product]="selectedProduct"
+#product
 (bought)="onBuy($event)">
 </app-product-detail>
 <p *ngIf="!selectedProduct">No product selected!</p>
 <ng-template #noProduct>
+
     <p>No product selected</p>
 </ng-template>
 <!-- {{product.name}} -->

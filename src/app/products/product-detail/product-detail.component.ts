@@ -6,17 +6,17 @@ import { Product } from '../product';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductDetailComponent implements OnInit, OnChanges{
-@Input() name = '';
+@Input() product: Product | undefined;
 @Output() bought = new EventEmitter<string>();
 
 ngOnChanges(changes: SimpleChanges): void {
-    const product = changes['name'];
+    const product = changes['product'];
     if(!product.isFirstChange()) {
-    const oldValue = product.previousValue;
-    const newValue = product.currentValue;
+    const oldValue = product.previousValue.name;
+    const newValue = product.currentValue.name;
 
     console.log(`Product changed from ${oldValue} to ${newValue}`)
     }
@@ -25,24 +25,27 @@ ngOnChanges(changes: SimpleChanges): void {
 //   this.bought.emit();
 // }
 
-//or 
+//or
 
 constructor() {
-  console.log(`Name is ${this.name} in the constructor`)
+  console.log(`Name is ${this.product?.name} in the constructor`)
 }
   ngOnInit(): void {
-    console.log(`Name is ${this.name} in the ngOnInit`);
+    console.log(`Name is ${this.product?.name} in the ngOnInit`);
   }
 
 
 
 buy() {
-  this.bought.emit(this.name);
+  this.bought.emit(this.product?.name);
 }
 
-get productName(): string {
-  console.log(`Get ${this.name}`)
- return this.name;
+// get productName(): string {
+//   console.log(`Get ${this.product?.name}`)
+//  return this.product?.name;
+// }
+get remane(): string {
+  return 'ree'
 }
 }
 
