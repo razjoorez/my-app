@@ -33,6 +33,10 @@
     </li>
 </ul>
 
+<ul>
+    <li *ngFor="let product of products | sort ">sorted:{{product.name}}</li>
+</ul>
+
 <!-- <ul>
     <li *ngFor="let product of products; trackBy: trackByProducts">
      {{product}}

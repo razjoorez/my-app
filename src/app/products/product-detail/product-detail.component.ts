@@ -11,6 +11,8 @@ import { Product } from '../product';
 export class ProductDetailComponent implements OnInit, OnChanges{
 @Input() product: Product | undefined;
 @Output() bought = new EventEmitter<string>();
+@Input() name ='';
+
 
 ngOnChanges(changes: SimpleChanges): void {
     const product = changes['product'];
@@ -21,6 +23,7 @@ ngOnChanges(changes: SimpleChanges): void {
     console.log(`Product changed from ${oldValue} to ${newValue}`)
     }
 }
+
 // buy() {
 //   this.bought.emit();
 // }
@@ -46,6 +49,11 @@ buy() {
 // }
 get remane(): string {
   return 'ree'
+}
+
+get productName():string {
+  console.log(`Get ${this.name}`)
+  return this.name;
 }
 }
 
