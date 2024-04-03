@@ -42,6 +42,8 @@
      {{product}}
     </li>
 </ul> -->
+
+<input appNumeric>
 <app-product-detail
 *ngIf="selectedProduct; else noProduct"
 [product]="selectedProduct"
@@ -55,3 +57,7 @@
 </ng-template>
 <!-- {{product.name}} -->
 <!-- {{selectedProduct}} -->
+
+<h3>Offers</h3>
+<ng-template appProductHost></ng-template>
+<p appCopyright>hello</p>
