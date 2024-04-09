@@ -1,6 +1,7 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { Product } from '../product';
+import { ProductsService } from 'src/app/product/products.service';
 
 @Component({
   selector: 'app-product-list',
@@ -9,7 +10,14 @@ import { Product } from '../product';
 })
 
 
-export class ProductListComponent implements AfterViewInit {
+export class ProductListComponent implements AfterViewInit, OnInit{
+  ngOnInit(): void {
+     this.products = this.productService.getProducts();
+  }
+
+  constructor(private productService: ProductsService){
+
+  }
 
   @ViewChild(ProductDetailComponent) productDetail: ProductDetailComponent | undefined;
 
@@ -41,7 +49,7 @@ products: Product[] = [
   }
 ]
 
-
+ 
 // onBuy() {
 //   window.alert(`Just bought ${this.selectedProduct}`)
 // }
